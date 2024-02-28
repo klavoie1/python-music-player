@@ -1,6 +1,6 @@
 import os
 import tkinter as tk
-from tkinter import filedialog
+from tkinter import BOTH, LEFT, RIGHT, filedialog
 from pygame import mixer  # For audio playback
 
 class MusicPlayer:
@@ -19,19 +19,22 @@ class MusicPlayer:
 
     def create_ui(self):
         self.song_listbox = tk.Listbox(self.root, selectmode=tk.SINGLE)
-        self.song_listbox.pack(padx=100, pady=100)
+        self.song_listbox.pack(fill=BOTH, expand=True)
 
-        self.add_button = tk.Button(self.root, text="Add Song", command=self.add_song)
-        self.add_button.pack(pady=5)
+        self.add_folder = tk.Button(root, text="Add Folder", foreground="#37474f", background="#81d4fa", command=self.add_songs_from_folder)
+        self.add_folder.pack(pady=5, fill=BOTH, expand=True)
 
-        self.play_button = tk.Button(self.root, text="Play", foreground="white", background="green", command=self.play)
-        self.play_button.pack(pady=5)
+        self.add_button = tk.Button(self.root, text="Add Song", foreground="#37474f", background="#9575cd", command=self.add_song)
+        self.add_button.pack(pady=5, fill=BOTH, expand=True)
 
-        self.pause_button = tk.Button(self.root, text="Pause", command=self.pause)
-        self.pause_button.pack(pady=5)
+        self.play_button = tk.Button(self.root, text="Play", foreground="#37474f", background="#81c784", command=self.play)
+        self.play_button.pack(pady=5, fill=BOTH, expand=True)
 
-        self.add_folder = tk.Button(root, text="Add Folder", command=self.add_songs_from_folder)
-        self.add_folder.pack(pady=5)
+        self.pause_button = tk.Button(self.root, text="Pause", foreground="#37474f", background="#ef5350", command=self.pause)
+        self.pause_button.pack(pady=5, fill=BOTH, expand=True)
+
+        self.unpause_button = tk.Button(self.root, text="Unpause", foreground="#37474f", background="#fff59d", command=self.unpause)
+        self.unpause_button.pack(pady=5, fill=BOTH, expand=True)
 
     def add_songs_from_folder(self):
         folder_path = filedialog.askdirectory()
@@ -57,6 +60,9 @@ class MusicPlayer:
     def pause(self):
         if self.current_song:
             mixer.music.pause()
+
+    def unpause(self):
+        mixer.music.unpause()
 
 if __name__ == "__main__":
     

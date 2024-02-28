@@ -16,6 +16,7 @@ class MusicPlayer:
 
         self.create_ui()
 
+
     def create_ui(self):
         self.song_listbox = tk.Listbox(self.root, selectmode=tk.SINGLE)
         self.song_listbox.pack(padx=100, pady=100)
@@ -23,7 +24,7 @@ class MusicPlayer:
         self.add_button = tk.Button(self.root, text="Add Song", command=self.add_song)
         self.add_button.pack(pady=5)
 
-        self.play_button = tk.Button(self.root, text="Play", command=self.play)
+        self.play_button = tk.Button(self.root, text="Play", foreground="white", background="green", command=self.play)
         self.play_button.pack(pady=5)
 
         self.pause_button = tk.Button(self.root, text="Pause", command=self.pause)
@@ -58,6 +59,9 @@ class MusicPlayer:
             mixer.music.pause()
 
 if __name__ == "__main__":
+    
+
+
     root = tk.Tk()
     music_player = MusicPlayer(root)
     root.mainloop()

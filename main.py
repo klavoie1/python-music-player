@@ -7,9 +7,10 @@ class MusicPlayer:
     def __init__(self, root):
         self.root = root
         self.root.title("Simple Music Player")
-
-        # Initialize Pygame mixer
-        mixer.init()
+        self.root.maxsize(500,400)
+        self.root.minsize(500,400)
+        
+        mixer.init() # Initialize Pygame mixer
 
         self.playlist = []  # List to store songs
         self.current_song = None  # Currently playing song
@@ -18,23 +19,23 @@ class MusicPlayer:
 
 
     def create_ui(self):
-        self.song_listbox = tk.Listbox(self.root, selectmode=tk.SINGLE)
-        self.song_listbox.pack(fill=BOTH, expand=True)
+        self.song_listbox = tk.Listbox(self.root,width=50, height=10, selectmode=tk.SINGLE)
+        self.song_listbox.pack(padx=5, pady=5)
 
-        self.add_folder = tk.Button(root, text="Add Folder", foreground="#37474f", background="#81d4fa", command=self.add_songs_from_folder)
-        self.add_folder.pack(pady=5, fill=BOTH, expand=True)
+        self.add_folder = tk.Button(root, text="Add Folder", foreground="#37474f", background="#81d4fa", width=10, height=2, command=self.add_songs_from_folder)
+        self.add_folder.pack(padx=5, pady=5, side=LEFT)
 
-        self.add_button = tk.Button(self.root, text="Add Song", foreground="#37474f", background="#9575cd", command=self.add_song)
-        self.add_button.pack(pady=5, fill=BOTH, expand=True)
+        self.add_button = tk.Button(self.root, text="Add Song", foreground="#37474f", background="#9575cd", width=10, height=2, command=self.add_song)
+        self.add_button.pack(padx=5, pady=5, side=LEFT)
 
-        self.play_button = tk.Button(self.root, text="Play", foreground="#37474f", background="#81c784", command=self.play)
-        self.play_button.pack(pady=5, fill=BOTH, expand=True)
+        self.play_button = tk.Button(self.root, text="Play", foreground="#37474f", background="#81c784", width=10, height=2, command=self.play)
+        self.play_button.pack(padx=5, pady=5, side=RIGHT)
 
-        self.pause_button = tk.Button(self.root, text="Pause", foreground="#37474f", background="#ef5350", command=self.pause)
-        self.pause_button.pack(pady=5, fill=BOTH, expand=True)
+        self.pause_button = tk.Button(self.root, text="Pause", foreground="#37474f", background="#ef5350", width=10, height=2, command=self.pause)
+        self.pause_button.pack(padx=5, pady=5, side=RIGHT)
 
-        self.unpause_button = tk.Button(self.root, text="Unpause", foreground="#37474f", background="#fff59d", command=self.unpause)
-        self.unpause_button.pack(pady=5, fill=BOTH, expand=True)
+        self.unpause_button = tk.Button(self.root, text="Unpause", foreground="#37474f", background="#fff59d", width=10, height=2, command=self.unpause)
+        self.unpause_button.pack(padx=5, pady=5, side=RIGHT)
 
     def add_songs_from_folder(self):
         folder_path = filedialog.askdirectory()
@@ -65,9 +66,6 @@ class MusicPlayer:
         mixer.music.unpause()
 
 if __name__ == "__main__":
-    
-
-
     root = tk.Tk()
     music_player = MusicPlayer(root)
     root.mainloop()

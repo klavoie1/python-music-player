@@ -8,8 +8,8 @@ class MusicPlayer:
     def __init__(self, root):
         self.root = root
         self.root.title("Simple Music Player")
-        self.root.maxsize(700,450)
-        self.root.minsize(500,250)
+        self.root.maxsize(540,250)
+        self.root.minsize(540,250)
         
         mixer.init() # Initialize Pygame mixer
 

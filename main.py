@@ -8,7 +8,7 @@ class MusicPlayer:
     def __init__(self, root):
         self.root = root
         self.root.title("Simple Music Player")
-        self.root.maxsize(500,250)
+        self.root.maxsize(700,450)
         self.root.minsize(500,250)
         
         mixer.init() # Initialize Pygame mixer
@@ -33,11 +33,14 @@ class MusicPlayer:
         self.play_button = tk.Button(self.root, text="Play", foreground="#37474f", background="#81c784", width=10, height=2, command=self.play)
         self.play_button.pack(padx=5, pady=5, side=RIGHT)
 
-        self.pause_button = tk.Button(self.root, text="Pause", foreground="#37474f", background="#ef5350", width=10, height=2, command=self.pause)
+        self.pause_button = tk.Button(self.root, text="Pause", foreground="#37474f", background="#c6715e", width=10, height=2, command=self.pause)
         self.pause_button.pack(padx=5, pady=5, side=RIGHT)
 
         self.unpause_button = tk.Button(self.root, text="Unpause", foreground="#37474f", background="#fff59d", width=10, height=2, command=self.unpause)
         self.unpause_button.pack(padx=5, pady=5, side=RIGHT) 
+
+        self.exit_button = tk.Button(self.root, text="Exit", foreground="#37474f", background="#c12604", width=10, height=2, command=self.exit_app)
+        self.exit_button.pack(padx=5, pady=5, side=RIGHT)
 
     def add_songs_from_folder(self):
         folder_path = filedialog.askdirectory()
@@ -67,6 +70,8 @@ class MusicPlayer:
     def unpause(self):
         mixer.music.unpause()
 
+    def exit_app(self):
+        os.abort()
 
 if __name__ == "__main__":
     root = tk.Tk()

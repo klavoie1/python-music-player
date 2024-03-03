@@ -1,14 +1,15 @@
 import os
 import tkinter as tk
-from tkinter import BOTH, LEFT, RIGHT, filedialog
+from tkinter.ttk import *
+from tkinter import HORIZONTAL, LEFT, RIGHT, filedialog
 from pygame import mixer  # For audio playback
 
 class MusicPlayer:
     def __init__(self, root):
         self.root = root
         self.root.title("Simple Music Player")
-        self.root.maxsize(500,400)
-        self.root.minsize(500,400)
+        self.root.maxsize(500,250)
+        self.root.minsize(500,250)
         
         mixer.init() # Initialize Pygame mixer
 
@@ -18,6 +19,7 @@ class MusicPlayer:
         self.create_ui()
 
 
+    # UI Creation
     def create_ui(self):
         self.song_listbox = tk.Listbox(self.root,width=50, height=10, selectmode=tk.SINGLE)
         self.song_listbox.pack(padx=5, pady=5)
@@ -35,7 +37,7 @@ class MusicPlayer:
         self.pause_button.pack(padx=5, pady=5, side=RIGHT)
 
         self.unpause_button = tk.Button(self.root, text="Unpause", foreground="#37474f", background="#fff59d", width=10, height=2, command=self.unpause)
-        self.unpause_button.pack(padx=5, pady=5, side=RIGHT)
+        self.unpause_button.pack(padx=5, pady=5, side=RIGHT) 
 
     def add_songs_from_folder(self):
         folder_path = filedialog.askdirectory()
@@ -64,6 +66,7 @@ class MusicPlayer:
 
     def unpause(self):
         mixer.music.unpause()
+
 
 if __name__ == "__main__":
     root = tk.Tk()
